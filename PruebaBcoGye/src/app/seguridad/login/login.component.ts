@@ -10,6 +10,10 @@ import { PasswordModule } from 'primeng/password';
 
 import { AuthService } from '../../core/services/auth.service';
 import { GeneralService } from '../../core/shared/general.service';
+
+
+import Swal from 'sweetalert2';
+
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -20,7 +24,8 @@ import { GeneralService } from '../../core/shared/general.service';
       ButtonModule,
       InputTextModule,
       DropdownModule,
-      PasswordModule
+      PasswordModule,
+
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
@@ -48,30 +53,39 @@ export class LoginComponent implements OnInit  {
 
     this.loginForm = this.formBuilder.group({
       username: ['', [ Validators.required]],
-      password: ['', [ Validators.required, Validators.minLength(5) ]],
-      idEmpresa: ['', [ Validators.required ]],
-
+      password: ['', [ Validators.required, Validators.minLength(2) ]],
     });
 
   }
 
-  login() {
 
+
+
+  login() {
+    console.log("hola mundo");
+    console.log(this.loginForm.invalid);
     this.submitted = true;
 
     if (this.loginForm.invalid) {
       return;
     }
-
-    const { username, password, idEmpresa } = this.loginForm.value;
+    console.log("paso");
+    const { username, password } = this.loginForm.value;
     this.loading = true;
-    this.authService.login(username, password, idEmpresa)
+    this.authService.login(username, password )
       .subscribe({
         next: () =>  {
           this.router.navigate([this.returnUrl])
         },
         error: (ex) => {
-          this.generalService.mensajeWarning(ex.mensaje ?? 'servicio inactivo')
+          console.log(ex);
+          Swal.fire({
+            title: '¡Error!',
+            text: ex,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          });
+          this.generalService.mensajeError(ex ?? 'servicio inactivo')
           this.loading = false;
         },
         complete: () => {

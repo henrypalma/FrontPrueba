@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   private setAuthentication(loginResponse: LoginResponse): boolean {
-
+    console.log(loginResponse);
     this._currentUser.set( loginResponse );
     this._authStatus.set( AuthStatus.authenticated );
     localStorage.setItem(this.configAuthToken, loginResponse.token);
@@ -40,13 +40,12 @@ export class AuthService {
     return true;
   }
 
-  login( login: string, password: string, tenant: string): Observable<boolean> {
-    console.log('api: ', this.baseUrl)
-    console.log("tenant", tenant)
+  login( login: string, password: String): Observable<boolean> {
 
-    const url  = `${ this.baseUrl }/auth/login?tenant=${tenant}`;
+    const url  = `${ this.baseUrl }/auth/login`;
     const body = { login, password };
-
+    console.log(url)
+    console.log(body)
     return this.http.post<LoginResponse>( url, body )
       .pipe(
         map(result => this.setAuthentication(result)),
