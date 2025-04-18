@@ -12,14 +12,12 @@ import {
 
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: true,
-  imports: [
-    FontAwesomeModule,
-
-  ],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+    selector: 'app-sidebar',
+    imports: [
+        FontAwesomeModule,
+    ],
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.css'
 })
 
 export class SidebarComponent {

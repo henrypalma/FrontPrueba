@@ -1,0 +1,14 @@
+
+img {
+  align-self: center;
+}
+
+.login-logo {
+  max-width: 150px;
+}
+
+@media (max-width: 600px) {
+  .login-logo {
+    max-width: 100px;
+  }
+}

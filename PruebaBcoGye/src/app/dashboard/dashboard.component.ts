@@ -12,14 +12,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardComponent } from "../card/card.component";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  standalone: true,
-  styleUrls: ['./dashboard.component.css'],
-  imports: [
-    FontAwesomeModule,
-    CardComponent
-],
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css'],
+    imports: [
+        FontAwesomeModule,
+        CardComponent
+    ]
 })
 export class DashboardComponent {
   edit = faPen;

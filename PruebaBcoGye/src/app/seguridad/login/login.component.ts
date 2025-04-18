@@ -8,25 +8,22 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { PasswordModule } from 'primeng/password';
 
-// import { Empresa } from '../../../core/interfaces/seguridad/empresa.interface';
-// import { AuthService } from '../../../core/services/seguridad/auth.service';
-// import { EmpresaService } from '../../../core/services/seguridad/empresa.service';
-// import { UtilitarioService } from '../../../core/shared/utilitario.service';
-
+import { AuthService } from '../../core/services/auth.service';
+import { GeneralService } from '../../core/shared/general.service';
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    ButtonModule,
-    InputTextModule,
-    DropdownModule,
-    PasswordModule
+    selector: 'app-login',
+    standalone: true,
+    imports: [
+      FormsModule,
+      ReactiveFormsModule,
+      CommonModule,
+      ButtonModule,
+      InputTextModule,
+      DropdownModule,
+      PasswordModule
     ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit  {
 
@@ -35,8 +32,7 @@ export class LoginComponent implements OnInit  {
   private authService     = inject( AuthService );
   private router          = inject( Router );
   private activatedRoute  = inject( ActivatedRoute );
-  private empresaService  = inject( EmpresaService );
-  private utilitarioService = inject(UtilitarioService);
+  private generalService = inject(GeneralService);
 
 
   returnUrl!: string;
@@ -44,11 +40,10 @@ export class LoginComponent implements OnInit  {
   submitted = false;
   loading = false;
   hide = true;
-  empresas:Empresa[] = this.empresaService.getEmpresas();
 
 
   ngOnInit(): void {
-
+    console.log("hola mundo")
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/dashboard';
 
     this.loginForm = this.formBuilder.group({
@@ -76,7 +71,7 @@ export class LoginComponent implements OnInit  {
           this.router.navigate([this.returnUrl])
         },
         error: (ex) => {
-          this.utilitarioService.mensajeWarning(ex.mensaje ?? 'servicio inactivo')
+          this.generalService.mensajeWarning(ex.mensaje ?? 'servicio inactivo')
           this.loading = false;
         },
         complete: () => {

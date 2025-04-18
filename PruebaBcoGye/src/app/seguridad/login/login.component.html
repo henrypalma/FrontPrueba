@@ -1,30 +1,13 @@
 <div class="flex justify-content-center align-items-center h-screen">
   <div class="surface-card shadow-2 border-round lg:m-0 m-2 p-4 w-full md:w-5">
     <div class="text-center mb-3">
-      <img src="assets/images/logo_plp_199x128.png" alt="Logo" class="login-logo">
+      Bienvenido
     </div>
 
 
     <form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
       <!-- Empresa -->
-      <div class="p-fluid mb-3">
-        <label for="empresa" class="block font-bold mb-2">Empresa</label>
-        <p-dropdown
-                formControlName="idEmpresa"
-                [options]="empresas"
-                [filter]="true"
-                [checkmark]="true"
-                optionLabel="descripcion"
-                optionValue="idEmpresa"
-                class="p-fluid"
-                placeholder="--escoger una empresa--"
-                [ngClass]="{'ng-invalid ng-dirty': loginForm.get('idEmpresa')?.invalid && submitted }"
-                [required]="true"
-                />
-          @if(loginForm.get('idEmpresa')?.invalid && submitted){
-            <small class="text-red-500">Escoger una Empresa.</small>
-          }
-      </div>
+
 
       <!-- Usuario y Contraseña en dos columnas en pantallas medianas o grandes -->
       <div class="flex flex-column md:flex-row gap-2">
@@ -40,10 +23,18 @@
         <!-- Contraseña -->
         <div class="p-fluid flex-1">
           <label for="password" class="block font-bold mb-2">Contraseña</label>
-          <p-password formControlName="password" [feedback]="false" [toggleMask]="true" placeholder="Contraseña"/>
+          <p-password formControlName="password" id="password" [feedback]="false" [toggleMask]="true" placeholder="Contraseña"/>
           @if(loginForm.get('password')?.invalid && submitted){
             <small class="text-red-500">Ingresar Contraseña.</small>
           }
+        </div>
+
+        <div class="flex flex-column md:flex-row gap-2">
+          <div class="p-fluid flex-1">
+            <label for="usuario" class="block font-bold mb-2">Usuario</label>
+            <input pInputText formControlName="username" id="usuario" placeholder="Usuario">
+            <small *ngIf="loginForm.get('username')?.invalid && submitted" class="text-red-500">Ingresa Usuario.</small>
+          </div>
         </div>
       </div>
 
