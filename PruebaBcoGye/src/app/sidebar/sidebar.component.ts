@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Router, RouterLink } from '@angular/router';
 import {
   faHome,
   faChartBar,
   faComment,
   faBookmark,
   faUser,
-  faIcons
+  faIcons,
+  faAddressBook
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -15,6 +17,8 @@ import {
     selector: 'app-sidebar',
     imports: [
         FontAwesomeModule,
+        RouterLink
+
     ],
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.css'
@@ -26,4 +30,7 @@ export class SidebarComponent {
   message = faComment;
   bookmark = faBookmark;
   user = faUser;
+  cliente = faAddressBook;
+
+
 }

@@ -4,42 +4,37 @@ import { isNotAuthenticatedGuard } from './core/guards/is-not-authenticated.guar
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './seguridad/login/login.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import LayoutComponent from './layout/layout.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  // { path: 'home', component: DashboardComponent, canActivate: [isAuthenticatedGuard] },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
-
-
-  // {
-  //   path: '',
-  //   redirectTo: 'dashboard',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  //   canActivate: [isAuthenticatedGuard],
-  //   children: [
-  //     {
-  //         path: 'dashboard',
-  //         component: DashboardComponent,
-  //         title: 'dashboard'
-  //     }
-  //   ]
-  // },
-  // {
-  //     path: 'login',
-  //     component: LoginComponent,
-  //     canActivate: [ isNotAuthenticatedGuard ],
-  // },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    canActivate: [isAuthenticatedGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        title: 'dashboard'
+      },
+      {
+        path: "cliente",
+        component: ClienteComponent,
+        title: "Cliente"
+      }
+    ]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [ isNotAuthenticatedGuard ],
+  },
 
 ];
 
-// const appRoutes = [
-//   { path: "", component: AppComponent, pathMatch: "full" },
-//   { path: "login", component: LoginComponent, pathMatch: "full" },
-//   // { path: "register", component: RegisterComponent, pathMatch: "full" },
-// ];
-
-// export const routing = RouterModule.forRoot(appRoutes);
