@@ -119,3 +119,48 @@ tr:nth-child(even) {
   font-size: 20px;
   cursor: pointer;
 }
+
+
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100px;
+  padding: 15px;
+  box-shadow: 40px 40px 100px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  background: linear-gradient(to right, #444, #888);
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-card-footer {
+  padding: 16px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

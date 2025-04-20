@@ -2,7 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, HttpClient, HttpParams, withInterceptors } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+
 import { jwtTokenInterceptor } from './core/interceptors/jwt-token.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClient, HttpParams,
-    MessageService,
+
     ToastrModule,
   ]
 

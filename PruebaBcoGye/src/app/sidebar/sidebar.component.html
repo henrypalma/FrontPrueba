@@ -1,31 +1,45 @@
-<nav class="vertical-navbar">
-  <h1>Henry</h1>
-  <ul>
-    <li>
-      <a routerLink="/cliente">
-        <fa-icon [icon]="cliente"></fa-icon>
-        <span class="nav-text">Clientes</span>
-      </a>
+<div class="sidebar" [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }">
+  <div class="sidebar-header">
+    <a href="#" class="sidebar-logo">{{
+      isSidebarCollapsed ? 'C' : 'CodeWithChintan'
+    }}</a>
+  </div>
+  <div class="sidebar-menu">
+    <ul>
+      <ng-container *ngFor="let item of menuItems">
+        <li class="sidebar-menu-item">
+          <a
+            href="#"
+            [routerLink]="item.route"
+            class="sidebar-item"
+            [ngClass]="{
+              'has-children': item.children,
+              'menu-item-active': item.isOpen
+            }"
+            (click)="toggleMenuItem(item)"
+          >
+            <i [class]="item.icon"></i>
+            <span class="sidebar-item-text">{{ item.label }}</span>
+            <i
+              *ngIf="item.children && !isSidebarCollapsed"
+              class="fas fa-chevron-down sidebar-item-arrow"
+              [ngClass]="{ rotated: item.isOpen }"
+            ></i>
+          </a>
 
-
-    </li>
-    <li>
-      <a href="#">
-        <fa-icon [icon]="chart"></fa-icon>
-        <span class="nav-text">Analytics</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <fa-icon [icon]="message"></fa-icon>
-        <span class="nav-text">Messages</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <fa-icon [icon]="bookmark"></fa-icon>
-        <span class="nav-text">Collections</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+          <ul
+            *ngIf="item.children && !isSidebarCollapsed && item.isOpen"
+            class="sidebar-submenu"
+          >
+            <li *ngFor="let child of item.children">
+              <a href="#" class="sidebar-item sidebar-subitem">
+                <i [class]="child.icon"></i>
+                <span class="sidebar-item-text">{{ child.label }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

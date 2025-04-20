@@ -3,10 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
-import { PasswordModule } from 'primeng/password';
+
 
 import { AuthService } from '../../core/services/auth.service';
 import { GeneralService } from '../../core/shared/general.service';
@@ -21,10 +18,7 @@ import Swal from 'sweetalert2';
       FormsModule,
       ReactiveFormsModule,
       CommonModule,
-      ButtonModule,
-      InputTextModule,
-      DropdownModule,
-      PasswordModule,
+
 
     ],
     templateUrl: './login.component.html',
@@ -85,7 +79,7 @@ export class LoginComponent implements OnInit  {
             icon: 'error',
             confirmButtonText: 'Ok',
           });
-          this.generalService.mensajeError(ex ?? 'servicio inactivo')
+          //this.generalService.mensajeError(ex ?? 'servicio inactivo')
           this.loading = false;
         },
         complete: () => {

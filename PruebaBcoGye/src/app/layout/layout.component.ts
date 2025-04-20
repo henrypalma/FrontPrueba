@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-layout',
-  imports: [SidebarComponent, RouterOutlet ],
+  standalone: true,
+  imports: [SidebarComponent, CommonModule, RouterOutlet ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
 export default class LayoutComponent {
-  title = 'PruebaBcoGye';
+  isSidebarCollapsed = false;
+
+  onSidebarToggle() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 }

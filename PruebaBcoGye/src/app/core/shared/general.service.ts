@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { MessageService } from 'primeng/api';
+//import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -27,29 +27,29 @@ export class GeneralService {
 
   }
 
-  constructor(private messageService: MessageService) {}
+//   constructor(private messageService: MessageService) {}
 
-  mensajeCorrecto(sms: string) {
-    this.messageService.add({ severity: 'success', summary: 'Correcto', detail: sms });
-  }
+//   mensajeCorrecto(sms: string) {
+//     this.messageService.add({ severity: 'success', summary: 'Correcto', detail: sms });
+//   }
 
-  mensajeInformativo(sms: string) {
-      this.messageService.add({ severity: 'info', summary: 'Información', detail: sms });
-  }
+//   mensajeInformativo(sms: string) {
+//       this.messageService.add({ severity: 'info', summary: 'Información', detail: sms });
+//   }
 
-  mensajeWarning(sms: string) {
-      this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: sms });
-  }
+//   mensajeWarning(sms: string) {
+//       this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: sms });
+//   }
 
-  mensajeError(sms: string) {
-      this.messageService.add({ severity: 'error', summary: 'Ups!', detail: sms });
-  }
+//   mensajeError(sms: string) {
+//       this.messageService.add({ severity: 'error', summary: 'Ups!', detail: sms });
+//   }
 
-  mensajeContrast(sms: string) {
-      this.messageService.add({ severity: 'contrast', summary: 'Error', detail: sms });
-  }
+//   mensajeContrast(sms: string) {
+//       this.messageService.add({ severity: 'contrast', summary: 'Error', detail: sms });
+//   }
 
-  mensajeSecundario(sms: string) {
-      this.messageService.add({ severity: 'secondary', summary: 'Secondary', detail: sms });
-  }
+//   mensajeSecundario(sms: string) {
+//       this.messageService.add({ severity: 'secondary', summary: 'Secondary', detail: sms });
+//   }
 }

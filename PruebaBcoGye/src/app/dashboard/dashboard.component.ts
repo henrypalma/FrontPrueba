@@ -9,7 +9,7 @@ import {
   faIcons
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { CardComponent } from "../card/card.component";
 
 @Component({
     selector: 'app-dashboard',
@@ -17,7 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     styleUrls: ['./dashboard.component.css'],
     imports: [
         FontAwesomeModule,
-
+        CardComponent
     ]
 })
 export class DashboardComponent {
