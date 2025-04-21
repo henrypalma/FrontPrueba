@@ -51,6 +51,8 @@ export class ProductoComponent {
       next: (productos) => {
         this.producto = productos;
         this.dataSource = new MatTableDataSource(this.producto);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       error: ({error}) => {
         console.log(error.mensaje);
@@ -71,11 +73,6 @@ export class ProductoComponent {
         }
       }
     });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

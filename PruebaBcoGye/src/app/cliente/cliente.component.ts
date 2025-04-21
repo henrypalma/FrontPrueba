@@ -28,7 +28,7 @@ import { GeneralService } from '../core/shared/general.service';
   templateUrl: './cliente.component.html',
   styleUrl: './cliente.component.css'
 })
-export class ClienteComponent implements AfterViewInit {
+export class ClienteComponent {
 
   cliente: Cliente[] = [];
   clienteService = inject(ClienteService);
@@ -37,8 +37,8 @@ export class ClienteComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'nombres', 'documentoIdentidad', 'estado', 'acciones'];
   dataSource: MatTableDataSource<Cliente> = new MatTableDataSource(undefined);
 
-  @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator;
-  @ViewChild(MatSort) sort: MatSort = new MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private dialog: MatDialog) {
     this.consultar();
@@ -50,6 +50,8 @@ export class ClienteComponent implements AfterViewInit {
       next: (clientes) => {
         this.cliente = clientes;
         this.dataSource = new MatTableDataSource(this.cliente);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       error: ({error}) => {
         console.log(error.mensaje);
@@ -73,10 +75,6 @@ export class ClienteComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

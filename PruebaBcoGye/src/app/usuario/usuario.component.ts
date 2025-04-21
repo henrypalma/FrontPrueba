@@ -29,12 +29,12 @@ import { GeneralService } from '../core/shared/general.service';
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })
-export class UsuarioComponent implements AfterViewInit {
+export class UsuarioComponent {
     usuario: Usuario[] = [];
     usuarioService = inject(UsuarioService);
     private general = inject (GeneralService)
 
-    displayedColumns: string[] = ['id', 'nombres', 'documentoIdentidad', 'estado', 'acciones'];
+    displayedColumns: string[] = ['id', 'nombres', 'usuario', 'estado', 'acciones'];
     dataSource: MatTableDataSource<Usuario> = new MatTableDataSource(undefined);
 
     @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator;
@@ -50,6 +50,8 @@ export class UsuarioComponent implements AfterViewInit {
         next: (usuarios) => {
           this.usuario = usuarios;
           this.dataSource = new MatTableDataSource(this.usuario);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         },
         error: ({error}) => {
           console.log(error.mensaje);
@@ -72,11 +74,6 @@ export class UsuarioComponent implements AfterViewInit {
             }
           }
         });
-      }
-
-      ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       }
 
       applyFilter(event: Event) {

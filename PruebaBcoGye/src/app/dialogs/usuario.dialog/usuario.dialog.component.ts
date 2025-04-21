@@ -7,10 +7,11 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { UsuarioService } from '../../core/services/usuario.service';
 import { GeneralService } from '../../core/shared/general.service';
+import { MatDialogContent } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario.dialog',
-  imports: [ MatFormFieldModule, MatInputModule, FormsModule, MatDialogActions, MatButtonModule ],
+  imports: [ MatFormFieldModule, MatInputModule, FormsModule, MatDialogActions, MatButtonModule, MatDialogContent ],
   templateUrl: './usuario.dialog.component.html',
   styleUrl: './usuario.dialog.component.css'
 })
