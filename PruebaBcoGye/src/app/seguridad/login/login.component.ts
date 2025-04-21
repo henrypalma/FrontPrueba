@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit  {
 
 
   ngOnInit(): void {
-    console.log("hola mundo")
+
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/dashboard';
 
     this.loginForm = this.formBuilder.group({
@@ -56,14 +56,13 @@ export class LoginComponent implements OnInit  {
 
 
   login() {
-    console.log("hola mundo");
-    console.log(this.loginForm.invalid);
+
     this.submitted = true;
 
     if (this.loginForm.invalid) {
       return;
     }
-    console.log("paso");
+
     const { username, password } = this.loginForm.value;
     this.loading = true;
     this.authService.login(username, password )
@@ -72,7 +71,7 @@ export class LoginComponent implements OnInit  {
           this.router.navigate([this.returnUrl])
         },
         error: (ex) => {
-          console.log(ex);
+
           Swal.fire({
             title: '¡Error!',
             text: ex,

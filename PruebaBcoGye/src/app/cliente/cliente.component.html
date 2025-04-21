@@ -20,14 +20,29 @@
 </style>
 
 <body>
+
+
+
   <div class="card">
     <div class="card-title">Clientes</div>
     <div class="card-body">
+      <section>
+
+        <div class="example-button-row">
+          <div class="example-flex-container">
+            <div>
+              <button mat-fab extended (click)="abrirDialogo()">
+                <mat-icon>add</mat-icon>
+                Nuevo Cliente
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
       <mat-form-field>
         <mat-label>Filtro</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
       </mat-form-field>
-
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="id">
@@ -36,21 +51,21 @@
           </ng-container>
 
           <!-- Progress Column -->
-          <ng-container matColumnDef="progress">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-            <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </th>
+            <td mat-cell *matCellDef="let row"> {{row.nombres}} {{row.apellidos}} </td>
           </ng-container>
 
           <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          <ng-container matColumnDef="documentoIdentidad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento Identidad </th>
+            <td mat-cell *matCellDef="let row"> {{row.documentoIdentidad}} </td>
           </ng-container>
 
           <!-- Fruit Column -->
-          <ng-container matColumnDef="fruit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
-            <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> estado </th>
+            <td mat-cell *matCellDef="let row"> {{row.estado}} </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

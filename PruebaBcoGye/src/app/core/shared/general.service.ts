@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import Swal from 'sweetalert2';
 //import { MessageService } from 'primeng/api';
 
 @Injectable({
@@ -27,29 +28,22 @@ export class GeneralService {
 
   }
 
-//   constructor(private messageService: MessageService) {}
+  mensajeError(sms: string){
+    Swal.fire({
+                title: '¡Error!',
+                text: sms,
+                icon: 'error',
+                confirmButtonText: 'Ok',
+              });
+  }
 
-//   mensajeCorrecto(sms: string) {
-//     this.messageService.add({ severity: 'success', summary: 'Correcto', detail: sms });
-//   }
+  mensajeCorrecto(sms: string){
+    Swal.fire({
+                title: 'Éxito!',
+                text: sms,
+                icon: 'success',
+                confirmButtonText: 'Ok',
+              });
+  }
 
-//   mensajeInformativo(sms: string) {
-//       this.messageService.add({ severity: 'info', summary: 'Información', detail: sms });
-//   }
-
-//   mensajeWarning(sms: string) {
-//       this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: sms });
-//   }
-
-//   mensajeError(sms: string) {
-//       this.messageService.add({ severity: 'error', summary: 'Ups!', detail: sms });
-//   }
-
-//   mensajeContrast(sms: string) {
-//       this.messageService.add({ severity: 'contrast', summary: 'Error', detail: sms });
-//   }
-
-//   mensajeSecundario(sms: string) {
-//       this.messageService.add({ severity: 'secondary', summary: 'Secondary', detail: sms });
-//   }
 }

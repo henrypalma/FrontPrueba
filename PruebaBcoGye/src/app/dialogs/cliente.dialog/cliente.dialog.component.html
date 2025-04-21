@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Cliente</h1>
+<div mat-dialog-content>
+  <form class="form">
+    <mat-form-field class="full-width">
+      <mat-label>Nombres</mat-label>
+      <input matInput [(ngModel)]="formData.nombres" name="nombres">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Apellidos</mat-label>
+      <input matInput [(ngModel)]="formData.apellidos" name="apellidos">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Documento de Identidad</mat-label>
+      <input matInput [(ngModel)]="formData.documentoIdentidad" name="documentoIdentidad">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Correo</mat-label>
+      <input matInput [(ngModel)]="formData.correo" name="correo" type="email">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Teléfono</mat-label>
+      <input matInput [(ngModel)]="formData.telefono" name="telefono" type="tel">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Dirección</mat-label>
+      <input matInput [(ngModel)]="formData.direccion" name="direccion">
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="cerrar()">Cerrar</button>
+  <button mat-fab extended (click)="grabar()">Grabar</button>
+</mat-dialog-actions>
