@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './seguridad/login/login.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import LayoutComponent from './layout/layout.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { ProductoComponent } from './producto/producto.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +29,16 @@ export const routes: Routes = [
         path: "cliente",
         component: ClienteComponent,
         title: "Cliente"
+      },
+      {
+        path: "usuario",
+        component: UsuarioComponent,
+        title: "Usuario"
+      },
+      {
+        path: "producto",
+        component: ProductoComponent,
+        title: "Producto"
       }
     ]
   },

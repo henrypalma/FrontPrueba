@@ -1,41 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { GeneralService } from '../shared/general.service';
-import { Cliente } from '../interfaces/cliente.interface';
+import { Usuario } from '../interfaces/usuario.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ClienteService{
+export class UsuarioService{
   constructor(){
-
   }
-
-  private endpoint: string = '/cliente';
+  private endpoint: string = '/usuario';
   private http    = inject( HttpClient );
   private general = inject (GeneralService)
 
-  consultarClientes():Observable<Cliente[]>{
+  consultarUsuarios():Observable<Usuario[]>{
     const url = this.general.obtenerEndPoint(this.endpoint + "/consultar");
-    return this.http.get<Cliente[]>(url);
+    return this.http.get<Usuario[]>(url);
   }
 
-  consultarClientePorId():Observable<Cliente>{
+  consultarUsuarioPorId():Observable<Usuario>{
     const url = this.general.obtenerEndPoint(this.endpoint);
-    return this.http.get<Cliente>(url);
+    return this.http.get<Usuario>(url);
   }
 
-  grabar(cliente?: Cliente): Observable<any>{
+  grabar(usuario?: Usuario): Observable<any>{
     const url = this.general.obtenerEndPoint(this.endpoint);
-    const resp = this.http.post(url, cliente);
+    const resp = this.http.post(url, usuario);
     return resp
   }
 
   eliminar(id: number): Observable<any>{
     const url = this.general.obtenerEndPoint(this.endpoint + "/eliminar", { id });
-    console.log(url);
     const resp = this.http.post(url, null);
     return resp
   }

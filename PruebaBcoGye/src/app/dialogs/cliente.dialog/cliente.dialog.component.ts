@@ -53,18 +53,16 @@ export class ClienteDialogComponent {
     this.cliente.direccion = this.formData.direccion;
     this.cliente.telefono = this.formData.telefono;
 
-    console.log("hola mundo");
     this.clienteService.grabar(this.cliente)
       .subscribe({
         next: (result) => {
-          console.log(result);
           this.cerrar();
           this.general.mensajeCorrecto("Cliente se grabó correctamente");
         },
         error: ({ error }) => {
           this.general.mensajeError(error.mensaje);
         },
-      })
+      });
   }
 
 }

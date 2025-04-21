@@ -46,4 +46,16 @@ export class GeneralService {
               });
   }
 
+  mensajeConfirmación(mensaje: string): Promise<boolean> {
+    return Swal.fire({
+      title: mensaje,
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: "No",
+    }).then((result) => {
+      return result.isConfirmed;
+    });
+  }
+
 }

@@ -15,27 +15,28 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { Cliente } from '../core/interfaces/cliente.interface';
-import { ClienteService } from '../core/services/cliente.service';
+import { Producto } from '../core/interfaces/producto.interface';
+import { ProductoService } from '../core/services/producto.service';
+
+import { ProductoDialogComponent } from '../dialogs/producto.dialog/producto.dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
-import { ClienteDialogComponent } from './../dialogs/cliente.dialog/cliente.dialog.component';
 import { GeneralService } from '../core/shared/general.service';
 
 @Component({
-  selector: 'app-cliente',
+  selector: 'app-producto',
   imports: [ MatCardModule, MatButtonModule, MatChipsModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatDividerModule, MatIconModule ],
-  templateUrl: './cliente.component.html',
-  styleUrl: './cliente.component.css'
+  templateUrl: './producto.component.html',
+  styleUrl: './producto.component.css'
 })
-export class ClienteComponent implements AfterViewInit {
+export class ProductoComponent {
 
-  cliente: Cliente[] = [];
-  clienteService = inject(ClienteService);
+  producto: Producto[] = [];
+  productoService = inject(ProductoService);
   private general = inject (GeneralService)
 
-  displayedColumns: string[] = ['id', 'nombres', 'documentoIdentidad', 'estado', 'acciones'];
-  dataSource: MatTableDataSource<Cliente> = new MatTableDataSource(undefined);
+  displayedColumns: string[] = ['id', 'codigo', 'descripcion', 'precio', 'acciones'];
+  dataSource: MatTableDataSource<Producto> = new MatTableDataSource(undefined);
 
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort;
@@ -46,10 +47,10 @@ export class ClienteComponent implements AfterViewInit {
   }
 
   consultar(){
-    this.clienteService.consultarClientes().subscribe({
-      next: (clientes) => {
-        this.cliente = clientes;
-        this.dataSource = new MatTableDataSource(this.cliente);
+    this.productoService.consultarProductos().subscribe({
+      next: (productos) => {
+        this.producto = productos;
+        this.dataSource = new MatTableDataSource(this.producto);
       },
       error: ({error}) => {
         console.log(error.mensaje);
@@ -58,15 +59,14 @@ export class ClienteComponent implements AfterViewInit {
   }
 
   abrirDialogo(): void {
-    const dialogRef = this.dialog.open(ClienteDialogComponent, {
+    const dialogRef = this.dialog.open(ProductoDialogComponent, {
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
 
       if (result != undefined){
-        if(result.nombres != ""){
-          console.log('Datos ingresados:', result);
+        if(result.codigo != ""){
           this.consultar();
         }
       }
@@ -88,14 +88,14 @@ export class ClienteComponent implements AfterViewInit {
   }
 
   eliminar(row: any) {
-    this.general.mensajeConfirmación("¿Está seguro de eliminar el Cliente?")
+    this.general.mensajeConfirmación("¿Está seguro de eliminar el Producto?")
     .then((respuesta) => {
       console.log(respuesta);
     if (respuesta) {
-      this.clienteService.eliminar(row.id)
+      this.productoService.eliminar(row.id)
       .subscribe({
         next: (result) => {
-          this.general.mensajeCorrecto("Cliente se eliminó correctamente");
+          this.general.mensajeCorrecto("Producto se eliminó correctamente");
           this.consultar();
         },
         error: ({ error }) => {

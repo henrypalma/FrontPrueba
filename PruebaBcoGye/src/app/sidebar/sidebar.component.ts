@@ -29,7 +29,12 @@ export class SidebarComponent {
     {
       icon: 'fas fa-envelope',
       label: 'Usuarios',
-      route: '/dashboard'
+      route: '/usuario'
+    },
+    {
+      icon: 'fas fa-envelope',
+      label: 'Productos',
+      route: '/producto'
     }
   ];
 
